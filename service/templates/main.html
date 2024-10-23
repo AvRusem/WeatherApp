@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма маршрута</title>
+    <script>
+        function validateForm(event) {
+            const startPoint = document.getElementById('start_point').value;
+            const endPoint = document.getElementById('end_point').value;
+            
+            const regex = /^[а-яёА-ЯЁa-zA-Z\s]+$/;
+
+            if (!regex.test(startPoint)) {
+                alert("Начальная точка должна содержать только буквы и пробелы.");
+                event.preventDefault();
+                return false;
+            }
+
+            if (!regex.test(endPoint)) {
+                alert("Конечная точка должна содержать только буквы и пробелы.");
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Введите начальную и конечную точку маршрута</h1>
+    <form method="POST" onsubmit="return validateForm(event);">
+        <label for="start_point">Начальная точка:</label>
+        <input type="text" id="start_point" name="start_point" required>
+        <br><br>
+        <label for="end_point">Конечная точка:</label>
+        <input type="text" id="end_point" name="end_point" required>
+        <br><br>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
